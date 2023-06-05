@@ -1,0 +1,178 @@
+{% extends 'course_management/base.html' %} {% load crispy_forms_tags %} {% load static %} {% block title%}
+<title>Course Managment</title>
+{% endblock %} {% block content%}
+
+<Style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+    body {
+        margin: 0;
+        font-family: 'Noto Sans', sans-serif;
+    }
+    
+    body * {
+        box-sizing: border-box;
+    }
+    
+    .main-login {
+        width: 100vw;
+        height: 100vh;
+        background: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .left-login {
+        width: 50vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .left-login>h1 {
+        color: #fcfdfc;
+        font-size: 2.5vw;
+    }
+    
+    .left-login-image {
+        width: 35vw;
+    }
+    
+    .right-login {
+        width: 50vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .card-login {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 30px 35px;
+        background: #044074;
+        border-radius: 20px;
+        box-shadow: 0px 10px 40px #ffffff56;
+    }
+    
+    .card-login>h1 {
+        color: #fffcfc;
+        font-weight: 800;
+        margin: 0;
+    }
+    
+    .textfield {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 10px 0px;
+    }
+    
+    .textfield>input {
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        padding: 15px;
+        background: #ffffff;
+        color: #000000de;
+        font-size: 12pt;
+        box-shadow: 0px 10px 40px #a1a1a156;
+        outline: none;
+        box-sizing: border-box;
+    }
+    
+    .textfield>label {
+        color: #ffffffde;
+        margin-bottom: 10px;
+    }
+    
+    .textfield>input::placeholder {
+        color: #00000094;
+    }
+    
+    .btn-login {
+        width: 100%;
+        padding: 16px 0;
+        margin: 25px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 3px;
+        color: #000000;
+        background: #f7f7f7;
+        cursor: pointer;
+        box-shadow: 0px 10px 40px -12px #d3d1d152;
+    }
+    
+    .btn-login:hover {
+        background-color: #042446;
+        color: #f7f7f7;
+    }
+    
+    @media only screen and (max-width: 950px) {
+        .card-login {
+            width: 85%;
+        }
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .main-login {
+            flex-direction: column;
+        }
+        .left-login>h1 {
+            display: none;
+        }
+        .left-login {
+            width: 100%;
+            height: auto;
+        }
+        .right-login {
+            width: 100%;
+            height: auto;
+        }
+        .left-login-image {
+            width: 40vh;
+        }
+        .card-login {
+            width: 90%;
+        }
+    }
+</Style>
+<div class="main-login">
+    <div class="left-login">
+        <img src="{% static 'images/siyah-kurdele-logo.png' %}" class="left-login-image" alt="Pessoa trabalhando">
+    </div>
+    <div class="right-login">
+        <form method="POST" class="card-login">
+            {% csrf_token %}
+            <h1>Student Login</h1>
+            <div class="textfield">
+                <label>User Name</label>
+                <input type="text" name="username" id="usernaem" {% if username %} value="{{username}}" {% endif %} placeholder="Username" class="form-control {%if user_error %} is-invalid {% endif %}" />
+            </div>
+            <div class="textfield">
+                <label>Password</label>
+                <input type="password" name="password" id="password" placeholder="Password" class="form-control {%if user_error %} is-invalid {% endif %} " />
+
+            </div>
+            {% if user_error %}
+            <div class="form-check d-flex justify-content-left mb-4">
+                <ul class="text-danger">
+                    <li>{{user_error}}</li>
+                </ul>
+            </div>
+            {% endif %}
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+    </div>
+</div>
+{% endblock%}

@@ -1,0 +1,111 @@
+{% extends 'course_management/base.html' %} {% block title%}
+<title>Entry</title>
+{% endblock%} {% block content%}
+<style>
+    body {
+        overflow: hidden;
+    }
+    
+    .row {
+        margin: 15px;
+    }
+    
+    .col {
+        display: flex;
+        align-items: center;
+    }
+    
+    img {
+        height: 75px;
+        margin-left: 60px;
+        margin-right: 10px;
+    }
+    
+    h3 {
+        color: whitesmoke;
+    }
+    
+    .col:last-child {
+        color: rgb(0, 0, 0);
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 60px;
+    }
+    
+    .list-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+    }
+    
+    .same-width {
+        width: 50%;
+        border-width: 3px;
+        /* Adjust the value to make the border thicker */
+        border-style: solid;
+        border-color: #063970;
+    }
+    
+    .container {
+        display: flex;
+    }
+    
+    .container a {
+        flex: 1;
+    }
+    /* Responsive Styles for Mobile */
+    
+    @media (max-width: 767px) {
+        img {
+            margin: 15px 0;
+        }
+        h3 {
+            font-size: 18px;
+        }
+        .col:last-child {
+            align-items: center;
+        }
+    }
+    
+    @media only screen and (max-width: 500px) {
+        .list-group {
+            height: 70vh;
+        }
+        .container {
+            display: flex;
+        }
+        .container a {
+            flex: 5%;
+        }
+        .same-width {
+            width: 78%;
+            border-width: 3px;
+            /* Adjust the value to make the border thicker */
+            border-style: solid;
+        }
+    }
+</style>
+
+
+<div>
+    <div class="row" style="background-color: #022341; margin: 0 15px;">
+        <div class="col" style="display: flex; align-items: center;">
+            <img src="https://obs.samsun.edu.tr/gen_imgs/uni_logo.gif" style="height: 75px; margin-left: 60px; margin-right: 10px;">
+            <h3 style="color: whitesmoke; ">Samsun University</h3>
+        </div>
+        <div class="col" style="color: whitesmoke; display: flex; justify-content: flex-end; margin-right: 60px;">
+            <div style="margin: 30px 0;">Course Management System</div>
+        </div>
+    </div>
+</div>
+<form class="list-group" class="container">
+    <a href="#" class="list-group-item list-group-item-action active same-width" style=" border-style: solid;
+    border-color: #063970; background-color:#022341; color: white; padding: 15px">
+        Student / Academic Personal
+    </a>
+    <a href="{% url 'student-login' %}" class="btn btn-outline-primary same-width" style=" background-color: #022341; color:white;font-size: 6mm;padding: 15px">Student
+        Login</a>
+    <a href="{% url 'user-login' %}" class="btn btn-outline-primary same-width" style=" background-color: #022341; color: white;font-size: 6mm;padding: 15px">Personal
+        Login</a>
+</form> {%endblock%}
